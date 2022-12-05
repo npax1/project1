@@ -1,12 +1,11 @@
-
 import csv
+import re
 FILENAME = "data.csv"
-mode = (input('login->'))
+mode = (input('mode -->'))
 if mode == "yes":
     login = (input('login->'))
     password = (input('password->'))
     path = (input('path->'))
-
     data = [
         {"login": login , "password": password , "path": path}
     ]
@@ -20,15 +19,23 @@ if mode == "no":
     password1 = (input('password->'))
     inp = open('data.csv', 'r')
     for login, password, path in (i.split(';') for i in inp.readlines()):
-        #print( )
         if login1 == login:
             if password1 == password:
                 print("Yes")
                 print(path)
+                #n = "[\n|\r|\r\n]"
+                #path = re. sub (n,'',path)
+                #print(path)
+
+
+
 
 FILENAME = path
+n = "[\n|\r|\r\n]"
+FILENAME = re. sub (n,'',FILENAME)
+print(FILENAME)
 file_mode = input('Виберіть режим праці[ w або н - новий документ | a(анг або укр) - дозапис | r або ч - читати ] --> ')
-if file_mode != 'w' or file_mode == 'a' or file_mode == 'н' or file_mode == 'а':
+if file_mode != 'w' or file_mode != 'a' or file_mode != 'н' or file_mode != 'а':
     print(f"Некоректний режим --> {file_mode}")
 if file_mode == 'w' or file_mode == 'a' or file_mode == 'н' or file_mode == 'а':
     name = input("Продукт --> ")
